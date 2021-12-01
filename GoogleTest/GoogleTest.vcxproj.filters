@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="QueueTest.cpp" />
+    <ClCompile Include="pch.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{7a971548-a1bc-42ca-8367-0659d5b1009e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Файлы ресурсов</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
