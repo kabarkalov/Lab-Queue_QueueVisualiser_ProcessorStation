@@ -1,1 +1,5 @@
-﻿  QueueForm.vcxproj -> C:\Users\valya\source\repos\Queue\Debug\QueueForm.exe
+﻿  QForm.cpp
+C:\Users\valya\source\repos\Queue\QueueForm\QForm.h(406,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\valya\source\repos\Queue\QueueForm\QForm.h(407,34): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  QForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  QueueForm.vcxproj -> C:\Users\valya\source\repos\Queue\Debug\QueueForm.exe
