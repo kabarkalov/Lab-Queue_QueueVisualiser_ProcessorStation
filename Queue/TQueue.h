@@ -14,7 +14,9 @@ private:
 public:
 	
 	int Count() { return count; }					// Получить количество элементов в очереди
-	TQueue(int maxSize);							// Конструктор
+	int GetHead() { return head; }					// Возвращает номер элемента массива, являющегося головой очереди
+
+	TQueue(int maxSize = 1);						// Конструктор
 	TQueue(const TQueue& other);					// Конструктор копирования
 	TQueue<T>& operator=(const TQueue& other);		// Оператор присваивания
 	~TQueue() { delete[] arr; }						// Деструктор

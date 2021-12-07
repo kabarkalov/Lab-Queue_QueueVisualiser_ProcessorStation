@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Queue", "Queue\Queue.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTest", "GoogleTest\GoogleTest.vcxproj", "{CFB58256-CA2E-4EA8-9F0B-B3F74E7FF9D3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QueueForm", "QueueForm\QueueForm.vcxproj", "{F4431FD1-ECE0-4872-B119-63715BC8D0B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{CFB58256-CA2E-4EA8-9F0B-B3F74E7FF9D3}.Release|x64.Build.0 = Release|x64
 		{CFB58256-CA2E-4EA8-9F0B-B3F74E7FF9D3}.Release|x86.ActiveCfg = Release|Win32
 		{CFB58256-CA2E-4EA8-9F0B-B3F74E7FF9D3}.Release|x86.Build.0 = Release|Win32
+		{F4431FD1-ECE0-4872-B119-63715BC8D0B1}.Debug|x64.ActiveCfg = Debug|x64
+		{F4431FD1-ECE0-4872-B119-63715BC8D0B1}.Debug|x64.Build.0 = Debug|x64
+		{F4431FD1-ECE0-4872-B119-63715BC8D0B1}.Debug|x86.ActiveCfg = Debug|Win32
+		{F4431FD1-ECE0-4872-B119-63715BC8D0B1}.Debug|x86.Build.0 = Debug|Win32
+		{F4431FD1-ECE0-4872-B119-63715BC8D0B1}.Release|x64.ActiveCfg = Release|x64
+		{F4431FD1-ECE0-4872-B119-63715BC8D0B1}.Release|x64.Build.0 = Release|x64
+		{F4431FD1-ECE0-4872-B119-63715BC8D0B1}.Release|x86.ActiveCfg = Release|Win32
+		{F4431FD1-ECE0-4872-B119-63715BC8D0B1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
