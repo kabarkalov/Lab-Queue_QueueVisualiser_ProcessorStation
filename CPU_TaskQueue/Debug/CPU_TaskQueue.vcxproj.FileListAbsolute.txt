@@ -1,0 +1,3 @@
+C:\Users\valya\source\repos\Queue\CPU_TaskQueue\Debug\CPUTaskQueue.Processors.resources
+C:\Users\valya\source\repos\Queue\CPU_TaskQueue\Debug\CPU_TaskQueue.vcxproj.GenerateResource.cache
+C:\Users\valya\source\repos\Queue\CPU_TaskQueue\Debug\CPU_TaskQueue.vcxproj.AssemblyReference.cache
