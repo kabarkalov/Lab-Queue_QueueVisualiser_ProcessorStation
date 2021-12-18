@@ -132,7 +132,9 @@ namespace QueueForm {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(228, 48);
 			this->textBox1->TabIndex = 1;
+			this->textBox1->Text = L"50";
 			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &QForm::textBox1_TextChanged);
 			// 
 			// textBox2
 			// 
@@ -473,6 +475,8 @@ private: System::Void QForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	Pen^ whitePen = gcnew Pen(Color::Silver);
 	whitePen->Width = 15.0f;
 	graphicsForm->DrawEllipse(whitePen, 155, 390, 250, 150);
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
