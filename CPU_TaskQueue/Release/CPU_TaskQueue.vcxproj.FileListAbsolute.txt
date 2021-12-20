@@ -1,0 +1,2 @@
+C:\Users\valya\source\repos\Queue\CPU_TaskQueue\Release\CPUTaskQueue.Processors.resources
+C:\Users\valya\source\repos\Queue\CPU_TaskQueue\Release\CPU_TaskQueue.vcxproj.GenerateResource.cache
