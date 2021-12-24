@@ -1,5 +1,5 @@
 #pragma once
-#include "../Queue/TQueue.h"
+#include "TQueueList.h"
 
 namespace CPUTaskQueue {
 
@@ -23,21 +23,21 @@ namespace CPUTaskQueue {
 
 
 	
-	TQueue<Task> taskQueue(10000);
-	//TQueue<Task> taskInProcess(1000);
-	int quantityProc, procToTask_From, procToTask_To, stepsToTask_From, stepsToTask_To;
-	int taskNumber = 1;
-	float probabilityTask;
-	int stepCompleted = 0;
+	TQueueList<Task> taskQueue;	// Очередь задач
+	int quantityProc, procToTask_From, procToTask_To, stepsToTask_From, stepsToTask_To;	// Хранение параметров
+	int taskNumber = 1;		// Номер следующей задачи
+	float probabilityTask;	// Вероятность поступления задачи
+	int stepCompleted = 0;	// Тактов времени пройдено
 
 	/// <summary>
 	/// Сводка для Processors
 	/// </summary>
 	public ref class Processors : public System::Windows::Forms::Form
 	{
-		List<int> taskInProcess_number;
-		List<int> taskInProcess_stepLeft;
-		List<Button^> buttonList;
+		List<int> taskInProcess_number;		// Список с номерами задач в процессе
+		List<int> taskInProcess_stepLeft;	// Список с оставшимся количеством шагов для задач в процессе
+		List<Button^> buttonList;			// Список кнопок (процессоров)
+
 	private: System::Windows::Forms::DataGridView^ dataGridView2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
 	private: System::Windows::Forms::TextBox^ textBox13;
@@ -1121,7 +1121,7 @@ namespace CPUTaskQueue {
 			this->Controls->Add(this->label1);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"Processors";
-			this->Text = L"Processors";
+			this->Text = L"Процессоры";
 			this->Load += gcnew System::EventHandler(this, &Processors::Processors_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->EndInit();
@@ -1150,6 +1150,7 @@ namespace CPUTaskQueue {
 			this->panel1->Controls->Add(button);
 			buttonList.Add(button);
 		}
+
 		// Заполнение панели указанным количеством процессоров
 		void FillCPUPanel(int quant, int interval)
 		{
@@ -1175,6 +1176,7 @@ namespace CPUTaskQueue {
 			}
 
 		}
+
 		// Вычислить размер квадратной кнопки
 		int GetSizeButton(float interval, int countInString)
 		{
@@ -1182,14 +1184,14 @@ namespace CPUTaskQueue {
 			sizePanel -= interval * countInString + interval;
 			return sizePanel / countInString;
 		}
+
 		// Попытаться отправить задачу на процессоры
 		void TrySendTask(Task task)
 		{
 			dataGridView1->Rows->RemoveAt(0);
-			// Не хватает процессоров
+			// Не хватает процессоров - отправляем задачу в конец очереди
 			if (task.needProc > buttonList.Count - GetBusyProcCount())
 			{
-				//Task taskToEnd = taskQueue.Pop();
 				String^ str = task.number.ToString() + ": " + task.needProc.ToString() + "p, " + task.stepCount.ToString() + "s";
 				dataGridView1->Rows->Add(str);
 				dataGridView1->Rows[dataGridView1->Rows->Count - 1]->DefaultCellStyle->BackColor =
@@ -1200,7 +1202,7 @@ namespace CPUTaskQueue {
 				int countTextBox9 = Convert::ToInt32(textBox9->Text) + 1;
 				textBox9->Text = countTextBox9.ToString();
 			}
-			// Процессоров хватило
+			// Процессоров хватило - отправляет ее на процессоры
 			else
 			{
 				String^ str = task.number.ToString() + ": " + task.needProc.ToString() + "p, " + task.stepCount.ToString() + "s";
@@ -1224,6 +1226,7 @@ namespace CPUTaskQueue {
 			}
 
 		}
+
 		// Узнать количество занятых процессоров
 		int GetBusyProcCount()
 		{
@@ -1232,7 +1235,8 @@ namespace CPUTaskQueue {
 				if (Convert::ToInt32(item->Text) > 0) busyCount++;
 			return busyCount;
 		}
-		// Добавление задачи в очередь
+
+		// Добавление новой задачи в очередь
 		void AddTask()
 		{
 			Task newTask;
@@ -1250,6 +1254,7 @@ namespace CPUTaskQueue {
 			dataGridView1->ClearSelection();
 			taskQueue.Push(newTask);
 		}
+
 		// Убрать задачу из раздела "В процессе"
 		void RemoveTaskInProcess(int number)
 		{
@@ -1279,19 +1284,25 @@ namespace CPUTaskQueue {
 
 
 
-
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-
-		
+		// Нажатие на кнопку "Старт/Обновить"
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		try
 		{
 			quantityProc = Convert::ToInt32(quantProc->Text);
+			if (quantityProc < 0) throw;
 			probabilityTask = Convert::ToDouble(probTask->Text);
+			if (probabilityTask > 1 || probabilityTask < 0) throw;
 			timer1->Interval = Convert::ToInt32(timeStep->Text);
 			procToTask_From = Convert::ToInt32(textBox1->Text);
+			if (procToTask_From < 0) throw;
 			procToTask_To = Convert::ToInt32(textBox11->Text);
+			if (procToTask_To < 0) throw;
+			if (procToTask_From > procToTask_To) throw;
 			stepsToTask_From = Convert::ToInt32(textBox2->Text);
+			if (stepsToTask_From < 0) throw;
 			stepsToTask_To = Convert::ToInt32(textBox12->Text);
+			if (stepsToTask_To < 0) throw;
+			if (stepsToTask_From > stepsToTask_To) throw;
 		}
 		catch (...)
 		{
@@ -1307,14 +1318,16 @@ namespace CPUTaskQueue {
 	}
 
 
-
+	   // Перерисовка процессоров при изменении числа в текстовом поле
 private: System::Void quantProc_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	try { FillCPUPanel(Convert::ToInt32(quantProc->Text), -1); }
 	catch (...) { return; }
 	
 }
 
+	   // Работа одного такта
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+
 	// Обновление статистики:
 	int countTextBox5 = Convert::ToInt32(textBox5->Text);
 	textBox5->Text = (countTextBox5 + buttonList.Count - GetBusyProcCount()).ToString();
@@ -1322,6 +1335,7 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 	textBox14->Text = countTextBox14.ToString();
 	//=======================================
 
+	// Уменьшение на единицу чисел на активных процессорах
 	for each (Button^ proc in buttonList)
 	{
 		int stepLeft = Convert::ToInt32(proc->Text);
@@ -1338,9 +1352,8 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 		}
 	}
 
+	// Удаление из раздела "В процессе" завершенных задач
 	List<int> numberTaskForDelete;
-
-
 	for (int i = 0; i < taskInProcess_number.Count; i++)
 	{
 		taskInProcess_stepLeft[i]--;
@@ -1356,10 +1369,10 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 		taskInProcess_stepLeft.Remove(0);
 	}
 
-
-
-
+	// Попытка отправить задачу на выполнение
 	if (!taskQueue.IsEmpty()) TrySendTask(taskQueue.Pop());
+
+	// Добавление новой задачи в очередь с некоторой вероятностью
 	if (probabilityTask > rand->NextDouble())
 	{
 		AddTask();
@@ -1379,20 +1392,25 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 	stepCompleted += GetBusyProcCount();
 	textBox4->Text = ((int)((float)stepCompleted / countTextBox3)).ToString() + "/" + buttonList.Count.ToString();
 	
+	// Авто-прокручивание таблицы с событиями к последним действиям
 	if (dataGridView4->Rows->Count != 0)
 		dataGridView4->FirstDisplayedScrollingRowIndex = dataGridView4->Rows->Count - 1;
 
 }
+
+	   // Заполнение процессорами при загрузке формы
 private: System::Void Processors_Load(System::Object^ sender, System::EventArgs^ e) {
 	rand = gcnew Random();
 	FillCPUPanel(Convert::ToInt32(quantProc->Text), -1);
 }
+
 private: System::Void dataGridView1_SelectionChanged(System::Object^ sender, System::EventArgs^ e) {
 	dataGridView1->ClearSelection();
 }
 private: System::Void dataGridView2_SelectionChanged(System::Object^ sender, System::EventArgs^ e) {
 	dataGridView2->ClearSelection();
 }
+	   // Нажатие на кнопку "Пауза/Продолжить"
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (button2->Text == "Пауза")
 	{
@@ -1405,6 +1423,8 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		timer1->Enabled = true;
 	}
 }
+
+	   // Нажатие на кнопку "Сброс"
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	ClearAllProcess();
 	button3->Enabled = false;
@@ -1443,6 +1463,9 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 
 
 
+
+
+	   // Кнопка "Обновить" становится доступной при изменении параметров
 
 private: System::Void dataGridView4_SelectionChanged(System::Object^ sender, System::EventArgs^ e) {
 	dataGridView4->ClearSelection();

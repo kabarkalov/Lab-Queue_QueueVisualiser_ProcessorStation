@@ -23,5 +23,11 @@
     <ClInclude Include="Processors.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="TNode.h">
+      <Filter>Файлы ресурсов</Filter>
+    </ClInclude>
+    <ClInclude Include="TQueueList.h">
+      <Filter>Файлы ресурсов</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
