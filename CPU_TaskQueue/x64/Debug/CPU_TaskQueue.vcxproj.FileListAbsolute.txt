@@ -1,0 +1,3 @@
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\x64\Debug\CPU_TaskQueue.vcxproj.AssemblyReference.cache
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\x64\Debug\CPUTaskQueue.Processors.resources
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\x64\Debug\CPU_TaskQueue.vcxproj.GenerateResource.cache

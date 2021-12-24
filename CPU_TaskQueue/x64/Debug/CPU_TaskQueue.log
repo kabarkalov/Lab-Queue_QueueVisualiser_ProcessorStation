@@ -1,0 +1,11 @@
+﻿  Processors.cpp
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\Processors.h(1141,52): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\Processors.h(1141,46): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\Processors.h(1142,48): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\Processors.h(1142,41): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\Processors.h(1164,37): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\Processors.h(1164,21): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\Processors.h(1182,1): warning C4244: -=: преобразование "float" в "int", возможна потеря данных
+C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\CPU_TaskQueue\Processors.h(1289,39): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  Processors.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  CPU_TaskQueue.vcxproj -> C:\Users\valya\OneDrive\Desktop\Lab-Queue_QueueVisualiser_ProcessorStation\x64\Debug\CPU_TaskQueue.exe

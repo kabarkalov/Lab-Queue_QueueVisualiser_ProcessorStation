@@ -293,6 +293,7 @@ namespace CPUTaskQueue {
 			this->probTask->TabIndex = 4;
 			this->probTask->Text = L"0,5";
 			this->probTask->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->probTask->TextChanged += gcnew System::EventHandler(this, &Processors::probTask_TextChanged);
 			// 
 			// label3
 			// 
@@ -320,6 +321,7 @@ namespace CPUTaskQueue {
 			this->timeStep->TabIndex = 6;
 			this->timeStep->Text = L"250";
 			this->timeStep->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->timeStep->TextChanged += gcnew System::EventHandler(this, &Processors::timeStep_TextChanged);
 			// 
 			// label4
 			// 
@@ -347,6 +349,7 @@ namespace CPUTaskQueue {
 			this->textBox1->TabIndex = 8;
 			this->textBox1->Text = L"1";
 			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &Processors::textBox1_TextChanged);
 			// 
 			// label5
 			// 
@@ -374,6 +377,7 @@ namespace CPUTaskQueue {
 			this->textBox2->TabIndex = 10;
 			this->textBox2->Text = L"3";
 			this->textBox2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &Processors::textBox2_TextChanged);
 			// 
 			// label6
 			// 
@@ -814,6 +818,7 @@ namespace CPUTaskQueue {
 			this->textBox11->TabIndex = 36;
 			this->textBox11->Text = L"5";
 			this->textBox11->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->textBox11->TextChanged += gcnew System::EventHandler(this, &Processors::textBox11_TextChanged);
 			// 
 			// textBox12
 			// 
@@ -828,6 +833,7 @@ namespace CPUTaskQueue {
 			this->textBox12->TabIndex = 37;
 			this->textBox12->Text = L"7";
 			this->textBox12->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->textBox12->TextChanged += gcnew System::EventHandler(this, &Processors::textBox12_TextChanged);
 			// 
 			// label17
 			// 
@@ -1276,26 +1282,36 @@ namespace CPUTaskQueue {
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		quantProc->Enabled = false;
 		
-		quantityProc = Convert::ToInt32(quantProc->Text);
-		probabilityTask = Convert::ToDouble(probTask->Text);
-		timer1->Interval = Convert::ToInt32(timeStep->Text);
-		procToTask_From = Convert::ToInt32(textBox1->Text);
-		procToTask_To = Convert::ToInt32(textBox11->Text);
-		stepsToTask_From = Convert::ToInt32(textBox2->Text);
-		stepsToTask_To = Convert::ToInt32(textBox12->Text);
+		try
+		{
+			quantityProc = Convert::ToInt32(quantProc->Text);
+			probabilityTask = Convert::ToDouble(probTask->Text);
+			timer1->Interval = Convert::ToInt32(timeStep->Text);
+			procToTask_From = Convert::ToInt32(textBox1->Text);
+			procToTask_To = Convert::ToInt32(textBox11->Text);
+			stepsToTask_From = Convert::ToInt32(textBox2->Text);
+			stepsToTask_To = Convert::ToInt32(textBox12->Text);
+		}
+		catch (...)
+		{
+			return;
+		}
+		quantProc->Enabled = false;
 		if (button1->Text == "Старт")
 			timer1->Enabled = true;
 		button1->Text = "Обновить";
 		button2->Enabled = true;
 		button3->Enabled = true;
+		button1->Enabled = false;
 	}
 
 
 
 private: System::Void quantProc_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	FillCPUPanel(Convert::ToInt32(quantProc->Text), -1);
+	try { FillCPUPanel(Convert::ToInt32(quantProc->Text), -1); }
+	catch (...) { return; }
+	
 }
 
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
@@ -1363,7 +1379,8 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 	stepCompleted += GetBusyProcCount();
 	textBox4->Text = ((int)((float)stepCompleted / countTextBox3)).ToString() + "/" + buttonList.Count.ToString();
 	
-
+	if (dataGridView4->Rows->Count != 0)
+		dataGridView4->FirstDisplayedScrollingRowIndex = dataGridView4->Rows->Count - 1;
 
 }
 private: System::Void Processors_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -1392,6 +1409,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	ClearAllProcess();
 	button3->Enabled = false;
 	button2->Enabled = false;
+	button1->Enabled = true;
 	button2->Text = "Пауза";
 	button1->Text = "Старт";
 	quantProc->Enabled = true;
@@ -1428,6 +1446,24 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 
 private: System::Void dataGridView4_SelectionChanged(System::Object^ sender, System::EventArgs^ e) {
 	dataGridView4->ClearSelection();
+}
+private: System::Void probTask_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	button1->Enabled = true;
+}
+private: System::Void timeStep_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	button1->Enabled = true;
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	button1->Enabled = true;
+}
+private: System::Void textBox11_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	button1->Enabled = true;
+}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	button1->Enabled = true;
+}
+private: System::Void textBox12_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	button1->Enabled = true;
 }
 };
 
