@@ -1289,20 +1289,20 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		try
 		{
 			quantityProc = Convert::ToInt32(quantProc->Text);
-			if (quantityProc < 0) throw;
+			if (quantityProc < 0) throw "error";
 			probabilityTask = Convert::ToDouble(probTask->Text);
-			if (probabilityTask > 1 || probabilityTask < 0) throw;
+			if (probabilityTask > 1 || probabilityTask < 0) throw "error";
 			timer1->Interval = Convert::ToInt32(timeStep->Text);
 			procToTask_From = Convert::ToInt32(textBox1->Text);
-			if (procToTask_From < 0) throw;
+			if (procToTask_From < 0) throw "error";
 			procToTask_To = Convert::ToInt32(textBox11->Text);
-			if (procToTask_To < 0) throw;
-			if (procToTask_From > procToTask_To) throw;
+			if (procToTask_To < 0) throw "error";
+			if (procToTask_From > procToTask_To) throw "error";
 			stepsToTask_From = Convert::ToInt32(textBox2->Text);
-			if (stepsToTask_From < 0) throw;
+			if (stepsToTask_From < 0) throw "error";
 			stepsToTask_To = Convert::ToInt32(textBox12->Text);
-			if (stepsToTask_To < 0) throw;
-			if (stepsToTask_From > stepsToTask_To) throw;
+			if (stepsToTask_To < 0) throw "error";
+			if (stepsToTask_From > stepsToTask_To) throw "error";
 		}
 		catch (...)
 		{
