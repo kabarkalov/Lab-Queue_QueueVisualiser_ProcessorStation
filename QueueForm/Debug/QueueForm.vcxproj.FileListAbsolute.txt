@@ -1,3 +1,0 @@
-C:\Users\valya\source\repos\Queue\QueueForm\Debug\QueueForm.vcxproj.GenerateResource.cache
-C:\Users\valya\source\repos\Queue\QueueForm\Debug\QueueForm.vcxproj.AssemblyReference.cache
-C:\Users\valya\source\repos\Queue\QueueForm\Debug\QueueForm.QForm.resources
